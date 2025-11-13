@@ -1,18 +1,17 @@
 import { Button, VerticalBox } from "std-widgets.slint";
 
-export component AppWindow inherits Window {
-    in-out property <int> counter: 42;
-    callback request-increase-value();
-    VerticalBox {
-        Text {
-            text: "Counter: \{root.counter}";
-        }
+component MemoryTile inherits Rectangle {
+    width: 64px;
+    height: 64px;
+    background: #3960D5;
 
-        Button {
-            text: "Increase value";
-            clicked => {
-                root.request-increase-value();
-            }
-        }
+    Image {
+        source: @image-url("icons/bus.png");
+        width: parent.width;
+        height: parent.height;
     }
+}
+
+export component MainWindow inherits Window {
+    MemoryTile { }
 }
