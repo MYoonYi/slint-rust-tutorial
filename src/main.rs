@@ -6,6 +6,8 @@ use std::time::Duration;
 
 slint::include_modules!();
 
+// Webseite-Version: auf Console "python -m http.server" eingeben
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen::prelude::wasm_bindgen(start))]
 fn main() {
     use slint::Model;
 
