@@ -12,7 +12,7 @@ component MemoryTile inherits Rectangle {
 
     height: 64px;
     width: 64px;
-    background: solved ? #34CE57 : #3960D5;
+    background: solved ? #34CE57 : #284fc3;
     animate background { duration: 800ms; }
 
     Image {
@@ -61,6 +61,9 @@ export component MainWindow inherits Window {
     width: 326px;
     height: 326px;
 
+    callback check_if_pair_solved(); // Added
+    in property <bool> disable_tiles; // Added
+
     in property <[TileData]> memory_tiles: [
         { image: @image-url("icons/at.png") },
         { image: @image-url("icons/balance-scale.png") },
@@ -81,7 +84,12 @@ export component MainWindow inherits Window {
         // propagate the solved status from the model to the tile
         solved: tile.solved;
         clicked => {
-            tile.image_visible = !tile.image_visible;
+                // old: tile.image_visible = !tile.image_visible;
+                // new:
+                if (!root.disable_tiles) {
+                tile.image_visible = true;
+                root.check_if_pair_solved();
+            }
         }
     }
 }
